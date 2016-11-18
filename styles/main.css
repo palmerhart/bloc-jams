@@ -53,7 +53,7 @@ body {
 
 .clearfix::before,
 
-clearfix::after {
+.clearfix::after {
     content: "";
     display: table;
 }
