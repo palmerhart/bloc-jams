@@ -203,7 +203,7 @@ var setSong = function(songNumber) {
         formats: [ 'mp3' ],
         preload: true
     });
-    setVoume(currentVolume);
+    setVolume(currentVolume);
 };
 
 var setVolume = function(volume) {
