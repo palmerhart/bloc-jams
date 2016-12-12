@@ -114,7 +114,7 @@ var nextSong = function() {
     }    
   
     //set a new current song to currentSongFromAlbum
-    setSong(songNumber);
+    setSong(currentSongIndex + 1);
     
     
     //update player bar to show the new song
@@ -145,7 +145,7 @@ var previousSong = function () {
     }
     
     //set a new current song
-    setSong(songNumber);
+    setSong(currentSongIndex + 1);
     
     $('.currently-playing .song-name').text(currentSongFromAlbum.title);
     $('.currently-playing .artist-name').text(currentAlbum.artist);
