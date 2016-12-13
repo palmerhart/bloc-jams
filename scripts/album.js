@@ -79,7 +79,6 @@ var createSongRow = function (songNumber, songName, songLength) {
     return $row;
 };
 
-
 var setCurrentAlbum = function(album) {
     currentAlbum = album;
     var $albumTitle = $('.album-view-title');
@@ -190,6 +189,8 @@ var currentSongFromAlbum = null;
 var currentSoundFile = null;
 var currentVolume = 80;
 
+// Media Bar Elements
+var $playPauseHold = $('.main-controls .play-pause');
 var $previousButton = $('.main-controls .previous');
 var $nextButton = $('.main-controls .next');
 
@@ -217,8 +218,25 @@ var getSongNumberCell = function(number) {
     return $('.song-item-number[data-song-number="' + number + '"]');
 };
 
+var togglePlayFromPlayerBar = function() {
+    //if a song is paused and the play button is clicked in the player bar, it will...
+    //#1 change the song number cell from a play button to a pause button
+    //#2 change the HTML of the player bars play button to a pause button
+    //#3 play the song
+    if (currentSoundFile && currentSoundFile.isPaused()) {
+        getSongNumberCell(currentlyPlayingSongNumber).html(pauseButtonTemplate);
+        $playPauseHold.html(pauseButtonTemplate);
+        currentSoundFile.play();
+    } else if (currentSoundFile) {
+        getSongNumberCell(currentlyPlayingSongNumber).html(playButtonTemplate);
+        $playPauseHold.html(playButtonTemplate);
+        currentSoundFile.pause();
+    }
+};
+
 $(document).ready(function() {
     setCurrentAlbum(albumPicasso);
     $previousButton.click(previousSong);
     $nextButton.click(nextSong);
+    $playPauseHold.click(togglePlayFromPlayerBar);
  });
